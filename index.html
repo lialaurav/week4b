@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Tic Tac Toe</title>
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+	<div style="width: 506px; margin: auto; position: relative;" id="container">
+		<h1 style="text-align: center;">Tic Tac Toe</h1>
+		<table style="width: 506px; height: 506px; border-style: hidden; border-collapse: collapse; text-align: center;">
+			<tr>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="0" onclick="insert('0');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="1" onclick="insert('1');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="2" onclick="insert('2');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="3" onclick="insert('3');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="4" onclick="insert('4');"></td>
+			</tr>
+			<tr>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="5" onclick="insert('5');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="6" onclick="insert('6');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="7" onclick="insert('7');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="8" onclick="insert('8');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="9" onclick="insert('9');"></td>
+			</tr>
+			<tr>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="10" onclick="insert('10');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="11" onclick="insert('11');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="12" onclick="insert('12');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="13" onclick="insert('13');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="14" onclick="insert('14');"></td>
+			</tr>
+			<tr>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="15" onclick="insert('15');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="16" onclick="insert('16');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="17" onclick="insert('17');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="18" onclick="insert('18');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="19" onclick="insert('19');"></td>
+			</tr>
+			<tr>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="20" onclick="insert('20');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="21" onclick="insert('21');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="22" onclick="insert('22');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="23" onclick="insert('23');"></td>
+				<td style="width: 100px; height: 100px; border: solid 3px;" id="24" onclick="insert('24');"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script>
+var spots = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var turn = 1;
+
+function insert(id) {
+	if (turn == 1) {
+		if (spots[id] != "X" && spots[id] != "O") {
+			document.getElementById(id).innerHTML = "X";
+			spots[id] = "X";
+			turn = 2;
+			if (checkAll("X") == 1) {
+				alert("Player 1 has won!");
+				turn = 0;
+			}
+		} else {
+			alert("This spot is already taken!");
+		}
+	} else if (turn == 2) {
+		if (spots[id] != "X" && spots[id] != "O") {
+			document.getElementById(id).innerHTML = "O";
+			spots[id] = "O";
+			turn = 1;
+			if (checkAll("O") == 1) {
+				alert("Player 2 has won!");
+				turn = 0;
+			}
+		} else {
+			alert("This spot is already taken!");
+		}
+	}
+}
+
+window.insert = insert;
+
+function checkWinning(char, a, b, c, d, e) {
+  if (spots[a] == char && spots[b] == char && spots[c] == char && spots[d] == char && spots[e] == char) {
+    return true;
+  } return false;
+}
+
+function checkAll(char) {
+  if (checkWinning(char, 0, 1, 2, 3, 4) == true) {
+    return 1;
+  } else if (checkWinning(char, 0, 5, 10, 15, 20) == true) {
+    return 1;
+  } else if (checkWinning(char, 0, 6, 12, 18, 24) == true) {
+    return 1;
+  } else if (checkWinning(char, 1, 6, 11, 16, 21) == true) {
+    return 1;
+  } else if (checkWinning(char, 2, 7, 12, 17, 22) == true) {
+    return 1;
+  } else if (checkWinning(char, 3, 8, 13, 18, 23) == true) {
+    return 1;
+  } else if (checkWinning(char, 4, 9, 14, 19, 24) == true) {
+    return 1;
+  } else if (checkWinning(char, 4, 8, 12, 16, 20) == true) {
+    return 1;
+  } else if (checkWinning(char, 5, 6, 7, 8, 9) == true) {
+    return 1;
+  } else if (checkWinning(char, 10, 11, 12, 13, 14) == true) {
+    return 1;
+  } else if (checkWinning(char, 15, 16, 17, 18, 19) == true) {
+    return 1;
+  } else if (checkWinning(char, 20, 21, 22, 23, 24) == true) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+</script>
+
+
+</html>

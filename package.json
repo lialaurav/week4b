@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "name": "week4",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.0"
+  }
+}
